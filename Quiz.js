@@ -22,6 +22,10 @@ const findMissingRanges = (frames) => {
     }
     // #endregion 
     // #region ايجاد الفجوات
+    // وضع اول فجوة
+    if (frames[0] != 1) {
+        frames.unshift(0)
+    }
     for (let i = 0; i < frames.length - 1; i++) {
         let start = frames[i];
         let end = frames[i + 1];
