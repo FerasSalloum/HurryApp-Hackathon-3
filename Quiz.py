@@ -2,8 +2,8 @@
 # frames = [1, 2, 3, 5, 6]
 # frames = [16, 1, 5, 2, 10, 3, 11, 6]
 # frames = [1, 2, 3, 5, 6, 16, 20, 30, 55]
-
 # frames = [1, 2, 3, 5, 6, 10, 11, 16]
+
 def find_missing_ranges(frames):
     result = {
         "gaps": [],
