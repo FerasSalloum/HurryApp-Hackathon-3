@@ -23,8 +23,10 @@ const findMissingRanges = (frames) => {
     // #endregion 
     // #region ايجاد الفجوات
     // وضع اول فجوة
-    if (frames[0] != 1) {
-        frames.unshift(0)
+    if (frames[0] > 1) {
+        // frames.unshift(0)
+        result.gaps.push([1, frames[0] - 1]);
+        result.missing_count += frames[0] - 1
     }
     for (let i = 0; i < frames.length - 1; i++) {
         let start = frames[i];
@@ -37,9 +39,13 @@ const findMissingRanges = (frames) => {
             // #region تحديد أطول فجوة
             if (
                 result.longest_gap.length === 0 ||
-                gapEnd - gapStart > result.longest_gap[1] - result.longest_gap[0]
+                gapEnd - gapStart > result.longest_gap[0][1] - result.longest_gap[0][0]
             ) {
-                result.longest_gap = [gapStart, gapEnd];
+                result.longest_gap = [[gapStart, gapEnd]];
+            }
+            // اضافة الفجوات متساوية الطول 
+            else if (gapEnd - gapStart == result.longest_gap[0][1] - result.longest_gap[0][0]) {
+                result.longest_gap.push([gapStart, gapEnd]);
             }
             // #endregion
         }
@@ -48,4 +54,3 @@ const findMissingRanges = (frames) => {
 
     return result;
 };
-// console.log(findMissingRanges(frames));
